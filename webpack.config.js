@@ -27,13 +27,9 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader"
-      },
-      {
         test: /\.ts[x]?$/,
-        use: ['babel-loader', 'awesome-typescript-loader']
+        exclude: /node_modules/,
+        use: ['awesome-typescript-loader']
       },
       {
         test: /\.css$/,
@@ -42,9 +38,10 @@ module.exports = {
           loader: 'style-loader'
         },
         {
-          loader: 'css-loader',
+          loader: 'typings-for-css-modules-loader',
           options: {
             modules: true,
+            namedExport: true,
             localIdentName: '[local]___[hash:base64:5]'
           }
         }]

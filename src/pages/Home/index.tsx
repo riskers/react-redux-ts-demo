@@ -1,27 +1,43 @@
 import * as React from 'react'
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux'
 import Loading from 'components/Loading'
 import List from 'components/List'
-
-import styles from './style.css'
-
+import * as styles from './style.css'
 import {
   searchUsers,
   getFollowers,
   getFollowings
-} from './actions'
+} from './actions';
 
-@connect(
-  state => (
-    {
-      users: state.usersReducer,
-      followers: state.followersReducer,
-      followings: state.followingsReducer
-    }
-  )
-)
-export default
-class Home extends React.Component {
+interface User {
+  id: number,
+  avatar_url: string,
+  login: boolean,
+}
+
+interface Users {
+  total: number,
+  data: User[],
+  loading: boolean,
+  error: string
+}
+
+interface P {
+  dispatch: Dispatch<{}>,
+  users: Users,
+  followers: Users,
+  followings: Users,
+}
+
+interface S {
+  username: string,
+  userPageIndex: number,
+  followersPageIndex: number,
+  followingsPageIndex: number
+}
+
+class Home extends React.Component<P, S> {
   constructor(props) {
     super(props)
 
@@ -141,3 +157,11 @@ class Home extends React.Component {
     )
   }
 }
+
+export default connect((state: any) => (
+  {
+    users: state.usersReducer,
+    followers: state.followersReducer,
+    followings: state.followingsReducer
+  }
+))(Home)

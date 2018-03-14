@@ -1,15 +1,26 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "components": ["/components"],
+            "pages": ["/pages"],
+        },
         "outDir": "./dist/",
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "module": "commonjs",
         "target": "es5",
         "jsx": "react",
-        "allowJs": true,
-        "lib": ["es6", "es7", "dom"],
-        "experimentalDecorators": true
+        "lib":[
+            "es2015",
+            "dom"
+        ],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
-    "exclude": ["dist", "node_modules"]
+    "exclude": ["dist", "node_modules"],
+    "include": [
+        "./src/**/*"
+    ]
 }

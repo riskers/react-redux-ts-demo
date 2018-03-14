@@ -1,16 +1,27 @@
-import * as React from 'react'
-import Loading from 'components/Loading'
-import styles from './style.css'
+import * as React from "react";
+import Loading from "components/Loading";
+import * as styles from "./style.css";
+
+interface User {
+  id: number,
+  avatar_url: string,
+  login: boolean,
+}
 
 interface P {
-  icon: string,
-  onClickItem: any,
-  onClickPrev: any,
-  onClickNext: any
+  icon?: string,
+  title: string,
+  style?: React.CSSProperties,
+  data: User[],
+  loading: boolean,
+  error: string,
+  onClickItem?: (e: User) => void,
+  onClickPrev?: () => void,
+  onClickNext?: () => void,
 }
 
 export default
-class List extends React.Component<P, {}>{
+class List extends React.Component<P, {}> {
 
   constructor(props) {
     super(props)
@@ -36,18 +47,18 @@ class List extends React.Component<P, {}>{
       if(list.length == 0) {
         content = <span>None</span>
       }else{
-        content = list.map(e => {
+        content = list.map((e) => {
           return <li key={e.id} className={styles.item} onClick={() => {onClickItem(e)}}>
             <img src={e.avatar_url} className={styles.pic}/>
             {e.login}
             <span className={styles.icon}>{this.props.icon}</span>
           </li>
-        })
+        });
       }
     }
 
     if(error) {
-      content = <span>{error}</span>
+      content = <span>{error}</span>;
     }
 
     return <div style={style}>
@@ -61,6 +72,6 @@ class List extends React.Component<P, {}>{
       <ul className={styles.list}>
         {content}
       </ul>
-    </div>
+    </div>;
   }
 }
