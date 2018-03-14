@@ -1,5 +1,5 @@
 import * as React from 'react'
-// import { hot } from '/react-hot-loader'
+import { hot } from 'react-hot-loader'
 
 import Home from 'pages/Home'
 
@@ -8,5 +8,5 @@ const App = () => {
     <Home />
   );
 };
-export default App
-// export default hot(module)(App)
+
+export default hot(module)(App)
