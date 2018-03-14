@@ -6,7 +6,7 @@ var ENV = process.env.ENV
 
 var entry = {
   index: [
-    ROOT + '/src/index.js'
+    ROOT + '/src/index.tsx'
   ]
 }
 
@@ -27,9 +27,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js[x]?$/,
-        exclude: /node_modules/,
-        use: ['babel-loader?cacheDirectory']
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
+      },
+      {
+        test: /\.ts[x]?$/,
+        use: ['babel-loader', 'awesome-typescript-loader']
       },
       {
         test: /\.css$/,
@@ -51,7 +55,7 @@ module.exports = {
     new webpack.NamedModulesPlugin()
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       'components': ROOT + '/src/components',
       'pages': ROOT + '/src/pages',

@@ -1,9 +1,9 @@
-import React from 'react'
+import * as React from 'react'
 import { connect } from 'react-redux'
 import Loading from 'components/Loading'
 import List from 'components/List'
 
-import './style.css'
+import styles from './style.css'
 
 import {
   searchUsers,
@@ -11,7 +11,6 @@ import {
   getFollowings
 } from './actions'
 
-export default
 @connect(
   state => (
     {
@@ -21,6 +20,7 @@ export default
     }
   )
 )
+export default
 class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -61,8 +61,8 @@ class Home extends React.Component {
 
         <button onClick={()=>{this.onSubmit(this.state.username)}}>search</button>
 
-        <div styleName="main">
-          <div styleName="users">
+        <div className={styles.main}>
+          <div className={styles.users}>
             <List
               style={{cursor: 'pointer'}}
               title={`users (${this.props.users.total})`}
@@ -89,7 +89,7 @@ class Home extends React.Component {
             />
           </div>
 
-          <div styleName="followers">
+          <div className={styles.followers}>
             <List
               title="fllowers"
               data={this.props.followers.data}
@@ -113,7 +113,7 @@ class Home extends React.Component {
             />
           </div>
 
-          <div styleName="followings">
+          <div className={styles.followings}>
             <List
               title="followings"
               data={this.props.followings.data}
