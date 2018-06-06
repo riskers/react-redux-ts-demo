@@ -1,26 +1,22 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-            "components": ["/components"],
-            "pages": ["/pages"],
-        },
-        "outDir": "./dist/",
-        "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
-        "noImplicitAny": false,
-        "module": "commonjs",
-        "target": "es5",
-        "jsx": "react",
-        "lib":[
-            "es2015",
-            "dom"
-        ],
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
-    "exclude": ["dist", "node_modules"],
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "module": "es6",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "declaration": false,
+    "removeComments": true,
+    "noImplicitReturns": false,
+    "noUnusedLocals": true,
+    "strict": true,
+    "outDir": "build",
+    "lib": ["es6", "es7", "dom"],
+    "baseUrl": "src",
+    "paths": {
+      "app/*": ["./app/*"]
+    }
+  },
+  "exclude": ["dist", "build", "node_modules"]
 }

@@ -1,23 +1,21 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import thunk from 'redux-thunk'
-const composeEnhancers = (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-import {
-  usersReducer,
-  followersReducer,
-  followingsReducer
-} from 'pages/Home/reducers'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunk from 'redux-thunk';
+import { countReducer } from '@/pages/Count/flow/reducers';
+import { asyncReducer } from '@/pages/Async/flow/reducers';
+
+const composeEnhancers =
+  (process.env.NODE_ENV === 'development' &&
+    (<any> window) &&
+    (<any> window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
 
 const reducer = combineReducers({
-  usersReducer,
-  followersReducer,
-  followingsReducer
-})
+  countReducer,
+  asyncReducer,
+});
 
-const configureStore = () => createStore(
-  reducer,
-  composeEnhancers(
+export function configureStore(initialState?: object) {
+  return createStore(reducer, composeEnhancers(
     applyMiddleware(thunk)
-  )
-)
-
-export default configureStore
+  ));
+}
