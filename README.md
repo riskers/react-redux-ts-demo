@@ -1,4 +1,6 @@
-# Frontend Boilerplate with React, Redux & TypeScript
+# react-redux-typescript-boilerplate
+
+First, have look a simple [demo](https://stackblitz.com/edit/react-ts-boil?file=index.tsx)
 
 ## Contains
 
